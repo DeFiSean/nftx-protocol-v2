@@ -18,7 +18,6 @@ contract NFTXVaultFactoryUpgradeable is
     UpgradeableBeacon,
     INFTXVaultFactory
 {
-    address public override zapContract; // No longer needed, but keeping for compatibility.
     address public override feeDistributor;
     address public override eligibilityManager;
 
@@ -136,11 +135,6 @@ contract NFTXVaultFactoryUpgradeable is
         require(_feeDistributor != address(0));
         emit NewFeeDistributor(feeDistributor, _feeDistributor);
         feeDistributor = _feeDistributor;
-    }
-
-    function setZapContract(address _zapContract) public onlyOwner virtual override {
-        emit NewZapContract(zapContract, _zapContract);
-        zapContract = _zapContract;
     }
 
     function setFeeExclusion(address _excludedAddr, bool excluded) public onlyOwner virtual override {
